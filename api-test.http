@@ -1,0 +1,71 @@
+### API Test File - Evolution API Wrapper
+
+### Use Ctrl+Alt+R (Cmd+Alt+R no macOS) para enviar as requisições
+
+# Variáveis de ambiente
+@baseUrl = http://localhost:3333
+@evolutionApiUrl = http://localhost:8082
+@apiKey = parangaricutirimicuaro-xyzzy-2233123123123213
+@contentType = application/json
+
+### Health Check
+
+GET {{baseUrl}}/health
+
+### Buscar todas as instâncias
+
+GET {{baseUrl}}/instances?instanceName=test-instance
+Accept: {{contentType}}
+
+### Teste de debug (sem validação Zod)
+
+POST {{baseUrl}}/instances/debug
+Content-Type: {{contentType}}
+apikey: {{apiKey}}
+
+{
+    "instanceName": "test-instance",
+    "integration": "WHATSAPP-BAILEYS"
+}
+
+### Criar uma nova instância (apenas campo obrigatório)
+
+POST {{baseUrl}}/instances
+Content-Type: {{contentType}}
+apikey: {{apiKey}}
+
+{
+    "instanceName": "test-instance",
+    "integration": "WHATSAPP-BAILEYS"
+}
+
+### Conectar uma instância específica
+
+GET {{baseUrl}}/instances/test-instance/connect
+apikey: {{apiKey}}
+
+### Verificar estado da conexão
+
+GET {{baseUrl}}/instances/test-instance/connectionState
+apikey: {{apiKey}}
+
+### Verificar configuração atual do webhook
+
+GET {{baseUrl}}/instances/test-instance/webhook
+apikey: {{apiKey}}
+
+### Reiniciar uma instância
+
+POST  {{baseUrl}}/instances/test-instance/restart
+apikey: {{apiKey}}
+
+### Fazer logout de uma instância
+
+DELETE {{baseUrl}}/instances/test-instance/logout
+apikey: {{apiKey}}
+
+
+
+
+
+
